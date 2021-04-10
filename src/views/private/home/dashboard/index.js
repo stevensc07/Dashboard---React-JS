@@ -1,12 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, rgbToHex, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -15,11 +15,28 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
-const drawerWidth = 240;
-
+import Navigation from '../../../../components/navigation'
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
+import TuneIcon from '@material-ui/icons/Tune';
+import MapIcon from '@material-ui/icons/Map';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import NoteIcon from '@material-ui/icons/Note';
+import PersonIcon from '@material-ui/icons/Person';
+import BuildIcon from '@material-ui/icons/Build';
+const { Text, Link, } = Typography;
+const { Title } = Typography;
+const drawerWidth = 250;
+const menuItems = [
+  { label: "Programacion", path: "/home", icon: 1 },
+  { label: "Gestion de operaciones", path: "/accounts", icon: 2 },
+  { label: "Perfiles", path: "/organizations", icon: 3 },
+  { label: "Roles", path: "/organizations", icon: 4 },
+  { label: "Usuarios", path: "/organizations", icon: 5 },
+  { label: "Reportes", path: "/organizations", icon: 6 },
+];
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -30,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: '#449df2'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -38,9 +56,10 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    backgroundColor: '#fff'
   },
   menuButton: {
-    marginRight: 36,
+    color: 'blue'
   },
   hide: {
     display: 'none',
@@ -49,6 +68,10 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
+    // background: rgb(2, 0, 36),
+
+    //background: 'linear-gradient(to right, #430089, #82ffa1)'
+    //  background: 'linear - gradient(0deg, rgba(2, 0, 36, 1) 0 %, rgba(9, 9, 121, 1) 35 %, rgba(0, 212, 255, 1) 100 %)',
   },
   drawerOpen: {
     width: drawerWidth,
@@ -56,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    background: 'linear-gradient(0deg, rgba(61,25,183,1) 0%, rgba(96,146,228,1) 42%, rgba(96,146,228,1) 65%, rgba(68,157,242,1) 100%)',
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
@@ -67,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9) + 1,
     },
+    background: 'linear-gradient(0deg, rgba(61,25,183,1) 0%, rgba(96,146,228,1) 42%, rgba(96,146,228,1) 65%, rgba(68,157,242,1) 100%)',
   },
   toolbar: {
     display: 'flex',
@@ -99,27 +124,36 @@ export default function MiniDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        // position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography>
+        <Toolbar style={{ backgroundColor: '#ffffff', display: 'flex', justifyContent: 'space-between', marginLeft: 73, }}>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} >
+            <IconButton
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Title level={4} style={{ color: 'blue', }} >
+              Prueba Front-end
+          </Title>
+          </div>
+
+          <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between', marginRight: '5%', width: 200, alignItems: 'center' }}>
+            <Avatar size={'small'} style={{ justifyContent: 'flex-end', alignItems: 'center', }} icon={<UserOutlined />} />
+            <Text style={{ marginLeft: '5%', marginRight: '5%', fontSize: 10, display: 'flex', }} >Stevens Correa Rada</Text>
+            <LogoutOutlined style={{ color: 'blue', marginLeft: '5%' }} />
+          </div>
+
         </Toolbar>
+
       </AppBar>
       <Drawer
         variant="permanent"
@@ -135,28 +169,29 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton style={{color:'#fff'}} onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {menuItems.map((r,) => (
+            <ListItem button key={r.label} style={{color:'#fff'}}>
+              <ListItemIcon onClick={() => console.log(r.label)}>
+                {r.icon == 1 ? <MapIcon style={{ color: '#fff' }}></MapIcon>
+                  : r.icon == 2 ? <FormatListBulletedIcon style={{ color: '#fff' }}></FormatListBulletedIcon>
+                    : r.icon == 3 ? <TuneIcon style={{ color: '#fff' }}></TuneIcon>
+                      : r.icon == 4 ? <BuildIcon style={{ color: '#fff' }}></BuildIcon>
+                        : r.icon == 5 ? <PersonIcon style={{ color: '#fff' }}></PersonIcon>
+                          : <NoteIcon style={{ color: '#fff' }}></NoteIcon>
+                }
+              </ListItemIcon>
+              <ListItemText primary={r.label} />
             </ListItem>
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
@@ -184,6 +219,7 @@ export default function MiniDrawer() {
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </main>
+      <Navigation />
     </div>
   );
 }

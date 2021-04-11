@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
-
+import * as Data from '../controller/tableController'
 import { Form, Input, Select, Button, Row, Col } from 'antd';
 const layout = {
     labelCol: {
@@ -28,8 +28,28 @@ const validateMessages = {
 const Demo = () => {
     const onFinish = (values) => {
         console.log(values);
+        Data.data.push({
+            //key: Data.data.length + 1,
+            name: values.name,
+            lastName: values.lastname,
+            id: values.id,
+            rol: values.rol,
+            state: values.state,
+            tel: values.phone,
+            mail: values.mail,
+        });
+        console.log(Data.data.length)
+        console.log(Data.data, 'el data')
+        console.log(Data.data[Data.data.length-1], 'ellll' , Data.data.length )
     };
-
+    const [names, setNames] = React.useState('');
+    const [lastname, setLastname] = React.useState('');
+    const [id, setId] = React.useState('');
+    const [rol, setRol] = React.useState('');
+    const [state, setState] = React.useState('');
+    const [pasw, setPasw] = React.useState('');
+    const [phone, setPhone] = React.useState('');
+    const [mail, seMail] = React.useState('');
     return (
         <Form style={{ marginRight: 90 }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
             <Row style={{ justifyContent: 'space-around' }}>
@@ -39,13 +59,15 @@ const Demo = () => {
                         name='name' >
 
                         <Input style={{ width: 210 }} placeholder="Nombre" id="name" />
+                        { }
+
                     </Form.Item>
                 </Col>
                 <Col xs={6}>
                     <Form.Item
                         label="Apellido"
                         name='lastname'>
-                        <Input style={{ width: 210 }} placeholder="Apellido" id="lastname" />
+                        <Input value={lastname} style={{ width: 210 }} placeholder="Apellido" id="lastname" />
                     </Form.Item>
                 </Col>
             </Row>
@@ -55,7 +77,7 @@ const Demo = () => {
                         label="Identificacion"
                         name='id'
                     >
-                        <Input style={{ width: 210 }} placeholder="Identificacion" id="id" />
+                        <Input value={id} style={{ width: 210 }} placeholder="Identificacion" id="id" />
                     </Form.Item>
                 </Col>
                 <Col xs={6}>
@@ -63,7 +85,7 @@ const Demo = () => {
                         label="Rol asociado"
                         name='rol'
                     >
-                        <Input style={{ width: 210 }} placeholder="Rol asociado" id="rol" />
+                        <Input value={rol} style={{ width: 210 }} placeholder="Rol asociado" id="rol" />
                     </Form.Item>
                 </Col>
             </Row>
@@ -73,7 +95,7 @@ const Demo = () => {
                         label="Estado"
                         name='state'
                     >
-                        <Input style={{ width: 210 }} placeholder="Estado" id="state" />
+                        <Input value={state} style={{ width: 210 }} placeholder="Estado" id="state" />
                     </Form.Item>
                 </Col>
                 <Col xs={6}>
@@ -81,7 +103,7 @@ const Demo = () => {
                         label="Contraseña"
                         name='pasw'
                     >
-                        <Input style={{ width: 210 }} type='password' placeholder="Contraseña" id="pasw" />
+                        <Input value={pasw} style={{ width: 210 }} type='password' placeholder="Contraseña" id="pasw" />
                     </Form.Item>
                 </Col>
             </Row>
@@ -92,7 +114,7 @@ const Demo = () => {
                         label="Telefono"
                         name='phone'
                     >
-                        <Input style={{ width: 210 }} placeholder="Telefono" id="phone" />
+                        <Input value={phone} style={{ width: 210 }} placeholder="Telefono" id="phone" />
                     </Form.Item>
                 </Col>
                 <Col xs={6}>
@@ -100,7 +122,7 @@ const Demo = () => {
                         label="Correo"
                         name='mail'
                     >
-                        <Input style={{ width: 210 }} placeholder="Correoelectronico" id="mail" />
+                        <Input value={mail} style={{ width: 210 }} placeholder="Correoelectronico" id="mail" />
                     </Form.Item>
                 </Col>
             </Row>

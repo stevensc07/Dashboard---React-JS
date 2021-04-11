@@ -73,7 +73,7 @@ for (let i = 0; i < 100; i++) {
 
 export default function DataTable() {
     return (
-        <div style={{ height: 400, width: '100%', paddingLeft:'1%', paddingRight:'1%' }}>
+        <div style={{ height: 400, width: '100%', paddingLeft:'1%', paddingRight:'1%', marginBottom:'10%' }}>
             <Table style={{ paddingTop: 20 }} tableLayout={'fixed'} size={'small'} columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
         </div>
     );

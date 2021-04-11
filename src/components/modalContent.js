@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 
@@ -108,14 +107,14 @@ const Demo = () => {
             <Row style={{ justifyContent: 'space-around' }}>
                 <Col xs={6}>
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                        <Button style={{background: 'linear-gradient(274deg, rgba(80,161,4,1) 31%, rgba(76,204,6,1) 86%)', borderWidth:0, borderRadius:5}} type="primary" htmlType="submit">
+                        <Button style={{ background: 'linear-gradient(274deg, rgba(80,161,4,1) 31%, rgba(76,204,6,1) 86%)', borderWidth: 0, borderRadius: 5 }} type="primary" htmlType="submit">
                             Aceptar
         </Button>
                     </Form.Item>
                 </Col>
                 <Col xs={6}>
 
-                    <Button style={{backgroundColor:'#fff', borderColor:'#50a104',  borderRadius:5, borderWidth:0.5, color:'black'}} type="primary" htmlType="submit">
+                    <Button style={{ backgroundColor: '#fff', borderColor: '#50a104', borderRadius: 5, borderWidth: 0.5, color: 'black' }} type="primary" htmlType="submit">
                         Cancelar
         </Button>
 

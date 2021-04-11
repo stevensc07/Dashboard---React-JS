@@ -28,6 +28,16 @@ import BuildIcon from '@material-ui/icons/Build';
 import Table from '../../../../components/table'
 import Form from '../../../../components/form'
 import Grid from '@material-ui/core/Grid';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
+import Draggable from 'react-draggable';
+import Content from '../../../../components/modalContent'
+import Button from '@material-ui/core/Button';
+import { useState } from 'react';
 
 const { Text, } = Typography;
 const { Title } = Typography;
@@ -40,6 +50,13 @@ const menuItems = [
   { label: "Usuarios", path: "/organizations", icon: 5 },
   { label: "Reportes", path: "/organizations", icon: 6 },
 ];
+function PaperComponent(props) {
+  return (
+    <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+      <Paper {...props} />
+    </Draggable>
+  );
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -118,6 +135,15 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const [openD, setOpenD] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpenD(true);
+  };
+
+  const handleClose = () => {
+    setOpenD(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -195,17 +221,20 @@ export default function MiniDrawer() {
 
       <Grid style={{ backgroundColor: '#EFEEED', marginTop: '5%' }} container spacing={3}>
         <Grid item xs={12} lg={8}>
-          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%' }}>
+          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            Open form dialog
+           </Button>
+          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%', height: '100%' }}>
             <Table></Table>
           </div>
 
         </Grid>
 
         <Grid item xs={12} lg={4}>
-          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%' , width:'80%'}}>
-          <Form></Form>I
+          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%', width: '80%' }}>
+            <Form></Form>I
           </div>
-       
+
         </Grid>
 
       </Grid>
@@ -219,6 +248,28 @@ export default function MiniDrawer() {
 
         </Col>
       </Row> */}
+      <Dialog
+        open={openD}
+        onClose={handleClose}
+        PaperComponent={PaperComponent}
+        aria-labelledby="draggable-dialog-title"
+       
+      >
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+          Agregar nuevo usuario
+        </DialogTitle>
+        <DialogContent  style={{borderRadius:100}}>
+          <Content></Content>
+        </DialogContent>
+       {/*  <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Subscribe
+          </Button>
+        </DialogActions> */}
+      </Dialog>
 
     </div >
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Form, Row, Col, Input, Button } from 'antd';
+import { Form, Row, Col, Input, Button, AutoComplete } from 'antd';
 import { Select } from 'antd';
 const AdvancedSearchForm = () => {
 
@@ -38,10 +38,10 @@ const AdvancedSearchForm = () => {
                 name="advanced_search"
                 className="ant-advanced-search-form"
                 onFinish={onFinish}
-                {...formItemLayout} >
+                style={{ paddingLeft: '2%', paddingRight: '2%', alignSelf: 'center', size: 'small', }} >
                 <Form.Item
                     label="Nombre"
-                    name='name' >
+                    name='name' style={{ justifyContent: 'center' }}>
 
                     <Input placeholder="Nombre" id="name" />
 
@@ -88,8 +88,9 @@ const AdvancedSearchForm = () => {
                 <Form.Item
                     label="Correo electronico"
                     name='mail'
+                    style={{ justifyContent: 'space-evenly' }}
                 >
-                    <Input placeholder="Correo electronico" id="mail" />
+                    <Input laceholder="Correo electronico" id="mail" />
                 </Form.Item>
 
             </Form>
@@ -100,12 +101,12 @@ const AdvancedSearchForm = () => {
                         textAlign: 'right',
                     }}
                 >
-                    <Button type="primary" htmlType="submit"> Search </Button>
-                    <Button style={{ margin: '0 8px', }}
+                    <Button style={{ background: 'linear-gradient(274deg, rgba(80,161,4,1) 31%, rgba(76,204,6,1) 86%)', borderWidth: 0, borderRadius: 5,}} type="primary" htmlType="submit"> Filtrar </Button>
+                    <Button style={{ margin: '0 8px', backgroundColor: '#fff', borderColor: '#50a104', borderRadius: 5, borderWidth: 0.5, color: 'black' }}
                         onClick={() => {
                             form.resetFields();
                         }} >
-                        Clear
+                        Limpiar
               </Button>
 
                 </Col>

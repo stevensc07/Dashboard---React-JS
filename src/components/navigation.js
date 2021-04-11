@@ -7,8 +7,9 @@ const Nav = () => {
                 <li> <Link to='/dashboard'> Dashboard</Link></li>
                 <li> <Link to='/settings'> Settings</Link></li>
                 <li> <Link to='/reports'> Reports</Link></li>
+                <li> <Link to='/index'> index</Link></li>
             </ul>
-       
+      {/*  {false && <Redirect to='test'></Redirect>} */}
         </React.Fragment>
     );
 };

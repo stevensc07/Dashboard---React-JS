@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -15,11 +15,31 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { Avatar, Col, Row } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
+import TuneIcon from '@material-ui/icons/Tune';
+import MapIcon from '@material-ui/icons/Map';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import NoteIcon from '@material-ui/icons/Note';
+import PersonIcon from '@material-ui/icons/Person';
+import BuildIcon from '@material-ui/icons/Build';
+import Table from '../../../../components/table'
+import Form from '../../../../components/form'
+import Grid from '@material-ui/core/Grid';
 
-const drawerWidth = 240;
-
+const { Text, } = Typography;
+const { Title } = Typography;
+const drawerWidth = 250;
+const menuItems = [
+  { label: "Programacion", path: "/home", icon: 1 },
+  { label: "Gestion de operaciones", path: "/accounts", icon: 2 },
+  { label: "Perfiles", path: "/organizations", icon: 3 },
+  { label: "Roles", path: "/organizations", icon: 4 },
+  { label: "Usuarios", path: "/organizations", icon: 5 },
+  { label: "Reportes", path: "/organizations", icon: 6 },
+];
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -30,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: '#449df2'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -38,9 +59,10 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    backgroundColor: '#fff'
   },
   menuButton: {
-    marginRight: 36,
+    color: 'blue'
   },
   hide: {
     display: 'none',
@@ -56,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    background: 'linear-gradient(0deg, rgba(61,25,183,1) 0%, rgba(96,146,228,1) 42%, rgba(96,146,228,1) 65%, rgba(68,157,242,1) 100%)',
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
@@ -67,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9) + 1,
     },
+    background: 'linear-gradient(0deg, rgba(61,25,183,1) 0%, rgba(96,146,228,1) 42%, rgba(96,146,228,1) 65%, rgba(68,157,242,1) 100%)',
   },
   toolbar: {
     display: 'flex',
@@ -99,27 +123,36 @@ export default function MiniDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        // position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography>
+        <Toolbar style={{ backgroundColor: '#ffffff', display: 'flex', justifyContent: 'space-between', marginLeft: 73, }}>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} >
+            <IconButton
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Title level={4} style={{ color: 'blue', }} >
+              Prueba Front-end
+          </Title>
+          </div>
+
+          <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between', marginRight: '5%', width: 200, alignItems: 'center' }}>
+            <Avatar size={'small'} style={{ justifyContent: 'flex-end', alignItems: 'center', }} icon={<UserOutlined />} />
+            <Text style={{ marginLeft: '5%', marginRight: '5%', fontSize: 10, display: 'flex', }} >Stevens Correa Rada</Text>
+            <LogoutOutlined style={{ color: 'blue', marginLeft: '5%' }} />
+          </div>
+
         </Toolbar>
+
       </AppBar>
       <Drawer
         variant="permanent"
@@ -135,55 +168,58 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton style={{ color: '#fff' }} onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {menuItems.map((r,) => (
+            <ListItem button key={r.label} style={{ color: '#fff' }}>
+              <ListItemIcon onClick={() => console.log(r.label)}>
+                {r.icon === 1 ? <MapIcon style={{ color: '#fff' }}></MapIcon>
+                  : r.icon === 2 ? <FormatListBulletedIcon style={{ color: '#fff' }}></FormatListBulletedIcon>
+                    : r.icon === 3 ? <TuneIcon style={{ color: '#fff' }}></TuneIcon>
+                      : r.icon === 4 ? <BuildIcon style={{ color: '#fff' }}></BuildIcon>
+                        : r.icon === 5 ? <PersonIcon style={{ color: '#fff' }}></PersonIcon>
+                          : <NoteIcon style={{ color: '#fff' }}></NoteIcon>
+                }
+              </ListItemIcon>
+              <ListItemText primary={r.label} />
             </ListItem>
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
-    </div>
+
+      <Grid style={{ backgroundColor: '#EFEEED', marginTop: '5%' }} container spacing={3}>
+        <Grid item xs={12} lg={8}>
+          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%' }}>
+            <Table></Table>
+          </div>
+
+        </Grid>
+
+        <Grid item xs={12} lg={4}>
+          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%' , width:'80%'}}>
+          <Form></Form>I
+          </div>
+       
+        </Grid>
+
+      </Grid>
+
+      {/*    <Row style={{ flexDirection: 'row', backgroundColor: 'red' }}>
+        <Col style={{ marginTop: '5%', backgroundColor: '#fff', borderRadius: 5, marginLeft: '2.5%', marginBottom: '10%' }}>
+
+
+        </Col>
+        <Col style={{ marginTop: '5%', backgroundColor: '#fff', borderRadius: 5, marginLeft: '2.5%', marginBottom: '10%', }}>
+
+        </Col>
+      </Row> */}
+
+    </div >
   );
 }

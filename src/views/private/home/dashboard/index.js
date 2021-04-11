@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, rgbToHex, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,8 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Navigation from '../../../../components/navigation'
-import { Avatar } from 'antd';
+import { Avatar, Col, Row } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
@@ -26,7 +25,11 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import NoteIcon from '@material-ui/icons/Note';
 import PersonIcon from '@material-ui/icons/Person';
 import BuildIcon from '@material-ui/icons/Build';
-const { Text, Link, } = Typography;
+import Table from '../../../../components/table'
+import Form from '../../../../components/form'
+import Grid from '@material-ui/core/Grid';
+
+const { Text, } = Typography;
 const { Title } = Typography;
 const drawerWidth = 250;
 const menuItems = [
@@ -68,10 +71,6 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-    // background: rgb(2, 0, 36),
-
-    //background: 'linear-gradient(to right, #430089, #82ffa1)'
-    //  background: 'linear - gradient(0deg, rgba(2, 0, 36, 1) 0 %, rgba(9, 9, 121, 1) 35 %, rgba(0, 212, 255, 1) 100 %)',
   },
   drawerOpen: {
     width: drawerWidth,
@@ -169,20 +168,20 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-          <IconButton style={{color:'#fff'}} onClick={handleDrawerClose}>
+          <IconButton style={{ color: '#fff' }} onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
           {menuItems.map((r,) => (
-            <ListItem button key={r.label} style={{color:'#fff'}}>
+            <ListItem button key={r.label} style={{ color: '#fff' }}>
               <ListItemIcon onClick={() => console.log(r.label)}>
-                {r.icon == 1 ? <MapIcon style={{ color: '#fff' }}></MapIcon>
-                  : r.icon == 2 ? <FormatListBulletedIcon style={{ color: '#fff' }}></FormatListBulletedIcon>
-                    : r.icon == 3 ? <TuneIcon style={{ color: '#fff' }}></TuneIcon>
-                      : r.icon == 4 ? <BuildIcon style={{ color: '#fff' }}></BuildIcon>
-                        : r.icon == 5 ? <PersonIcon style={{ color: '#fff' }}></PersonIcon>
+                {r.icon === 1 ? <MapIcon style={{ color: '#fff' }}></MapIcon>
+                  : r.icon === 2 ? <FormatListBulletedIcon style={{ color: '#fff' }}></FormatListBulletedIcon>
+                    : r.icon === 3 ? <TuneIcon style={{ color: '#fff' }}></TuneIcon>
+                      : r.icon === 4 ? <BuildIcon style={{ color: '#fff' }}></BuildIcon>
+                        : r.icon === 5 ? <PersonIcon style={{ color: '#fff' }}></PersonIcon>
                           : <NoteIcon style={{ color: '#fff' }}></NoteIcon>
                 }
               </ListItemIcon>
@@ -193,33 +192,34 @@ export default function MiniDrawer() {
         <Divider />
 
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
-      <Navigation />
-    </div>
+
+      <Grid style={{ backgroundColor: '#EFEEED', marginTop: '5%' }} container spacing={3}>
+        <Grid item xs={12} lg={8}>
+          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%' }}>
+            <Table></Table>
+          </div>
+
+        </Grid>
+
+        <Grid item xs={12} lg={4}>
+          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%' , width:'80%'}}>
+          <Form></Form>I
+          </div>
+       
+        </Grid>
+
+      </Grid>
+
+      {/*    <Row style={{ flexDirection: 'row', backgroundColor: 'red' }}>
+        <Col style={{ marginTop: '5%', backgroundColor: '#fff', borderRadius: 5, marginLeft: '2.5%', marginBottom: '10%' }}>
+
+
+        </Col>
+        <Col style={{ marginTop: '5%', backgroundColor: '#fff', borderRadius: 5, marginLeft: '2.5%', marginBottom: '10%', }}>
+
+        </Col>
+      </Row> */}
+
+    </div >
   );
 }

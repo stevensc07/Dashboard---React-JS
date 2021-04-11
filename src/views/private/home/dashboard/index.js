@@ -15,7 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Avatar, Col, Row } from 'antd';
+import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
@@ -29,26 +29,23 @@ import Table from '../../../../components/table'
 import Form from '../../../../components/form'
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
 import Content from '../../../../components/modalContent'
 import Button from '@material-ui/core/Button';
-import { useState } from 'react';
-
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 const { Text, } = Typography;
 const { Title } = Typography;
 const drawerWidth = 250;
 const menuItems = [
-  { label: "Programacion", path: "/home", icon: 1 },
-  { label: "Gestion de operaciones", path: "/accounts", icon: 2 },
-  { label: "Perfiles", path: "/organizations", icon: 3 },
-  { label: "Roles", path: "/organizations", icon: 4 },
-  { label: "Usuarios", path: "/organizations", icon: 5 },
-  { label: "Reportes", path: "/organizations", icon: 6 },
+  { label: "Programacion", path: "/programation", icon: 1 },
+  { label: "Gestion de operaciones", path: "/operations", icon: 2 },
+  { label: "Perfiles", path: "/profils", icon: 3 },
+  { label: "Roles", path: "/rols", icon: 4 },
+  { label: "Usuarios", path: "/user", icon: 5 },
+  { label: "Reportes", path: "/reports", icon: 6 },
 ];
 function PaperComponent(props) {
   return (
@@ -219,20 +216,32 @@ export default function MiniDrawer() {
 
       </Drawer>
 
-      <Grid style={{ backgroundColor: '#EFEEED', marginTop: '5%' }} container spacing={3}>
+      <Grid style={{ backgroundColor: '#EFEEED', marginTop: '5%' }} container spacing={2}>
         <Grid item xs={12} lg={8}>
-          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-            Open form dialog
-           </Button>
+
           <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%', height: '100%' }}>
+            <div style={{ marginBottom: 40, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ marginLeft: 30, flexDirection: 'row', display: 'flex', justifyContent: 'space-between', marginTop: 20 }}>
+                <PeopleAltIcon style={{ color: "#5422b9" }}></PeopleAltIcon> <samp style={{ marginLeft: 20, color: "#5422b9", marginTop: 3 }}> Usuarios existentes</samp>
+              </div>
+              <div style={{ marginRight: 30, marginTop: 20 }} >
+                <Button variant='contained' color="primary" onClick={handleClickOpen}>
+                  Crear
+           </Button>
+              </div>
+
+            </div>
             <Table></Table>
           </div>
 
         </Grid>
 
         <Grid item xs={12} lg={4}>
-          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%', width: '80%' }}>
-            <Form></Form>I
+          <div style={{ backgroundColor: '#fff', borderRadius: 5, marginLeft: '2%', width:'80%'}}>
+            <div style={{ marginLeft: 70, flexDirection: 'row', display: 'flex', paddingTop:20, paddingBottom:10 }}>
+              <PersonIcon style={{ color: "#5422b9" }}></PersonIcon> <samp style={{ marginLeft: 10, color: "#5422b9", marginTop: 3 }}> Filtrar Busqueda</samp>
+            </div>
+            <Form></Form>
           </div>
 
         </Grid>
@@ -253,15 +262,15 @@ export default function MiniDrawer() {
         onClose={handleClose}
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
-       
+
       >
         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
           Agregar nuevo usuario
         </DialogTitle>
-        <DialogContent  style={{borderRadius:100}}>
+        <DialogContent style={{ borderRadius: 100 }}>
           <Content></Content>
         </DialogContent>
-       {/*  <DialogActions>
+        {/*  <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">
             Cancel
           </Button>

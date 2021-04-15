@@ -1,59 +1,6 @@
-export const Columns = [
-  {
-    title: 'Nombre',
-    width: 80,
-    dataIndex: 'name',
-    key: 'name',
-    fixed: 'left',
-  },
-  {
-    title: 'Apellido',
-    width: 80,
-    dataIndex: 'lastName',
-    key: 'lastname',
-    fixed: 'left',
-  },
-  {
-    title: 'Identificacion',
-    dataIndex: 'id',
-    key: '1',
-    width: 100,
-  },
-  {
-    title: 'Rol',
-    dataIndex: 'rol',
-    key: '2',
-    width: 80,
-  },
-  {
-    title: 'Estado',
-    dataIndex: 'state',
-    key: '3',
-    width: 80,
-  },
-  {
-    title: 'Telefono',
-    dataIndex: 'tel',
-    key: '4',
-    width: 80,
-  },
-  {
-    title: 'Correo electronico',
-    dataIndex: 'mail',
-    key: '5',
-    width: 150,
-  },
 
-  {
-    title: 'Action',
-    key: 'operation',
-    fixed: 'right',
-    width: 80,
-    render: () => <a>action</a>,
-  },
-];
 export const data = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 2; i++) {
   data.push({
     key: i,
     name: `Stevens ${i}`,

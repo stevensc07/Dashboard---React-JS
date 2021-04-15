@@ -9,6 +9,7 @@ const AdvancedSearchForm = () => {
     const { Option } = Select;
         const onFinish = (values) => {
         console.log('Received values of form: ', values);
+        return values;
     };
 
     return (
